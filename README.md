@@ -53,6 +53,13 @@ This project is a simple frontend application built with HTML, CSS, and JavaScri
 
 ---
 
+## 🌐 Live Demo
+
+You can see the live deployed version of the app here:  
+[https://ajackus-employee-directory-web-inte.vercel.app/](https://ajackus-employee-directory-web-inte.vercel.app/)
+
+---
+
 # ✨ Features
 
 - 🔍 **Display employees** in a clean card/grid layout
