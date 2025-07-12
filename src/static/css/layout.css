@@ -1,0 +1,183 @@
+/*=== Page Header & Toolbar Layout ===*/
+.page-header {
+  background-color: #323232;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.page-header__title_menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.page-header__title {
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.page-header__controls {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.page-header.open .page-header__controls {
+  display: flex;
+}
+
+.page-header__toggle {
+  font-size: 24px;
+  background: none;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.toolbar {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.toolbar__controls__limit {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.toolbar__actions {
+  padding-top: 20px;
+}
+
+/*=== Employee List Container ===*/
+#employee-list-container {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/*=== Pagination Layout ===*/
+.pagination-controls {
+  margin: 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.pagination-controls .btn {
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.pagination-controls .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/*=== Responsive Grids ===*/
+@media screen and (min-width: 768px) {
+  .page-header {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px 60px;
+  }
+
+  .page-header__title {
+    font-size: 30px;
+    margin: 3px;
+  }
+
+  .page-header__title_menu {
+    width: auto;
+  }
+
+  .page-header__controls {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+  }
+
+  .page-header__toggle {
+    display: none;
+  }
+
+  .toolbar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 60px;
+  }
+
+  .toolbar__controls__limit {
+    width: auto;
+  }
+
+  .toolbar__actions {
+    padding: 0;
+  }
+
+  #employee-list-container {
+    padding: 20px 60px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    min-height: 60vh;
+  }
+
+  .page-footer p {
+    font-size: 18px;
+    margin: 8px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #employee-list-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*=== Page Footer ===*/
+.page-footer {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  background-color: #323232;
+  padding: 20px 60px;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+/*=== Modal Layer ===*/
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}

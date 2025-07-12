@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Directory</title>
+    <!-- Base styles -->
+    <link rel="stylesheet" href="src/static/css/base.css" />
+    <link rel="stylesheet" href="src/static/css/layout.css" />
+    <link rel="stylesheet" href="src/static/css/components.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="page-header__title_menu">
+        <h1 class="page-header__title">Employee Directory</h1>
+
+        <!-- Hamburger toggle button for mobile menu -->
+        <button
+          class="page-header__toggle"
+          id="header-toggle"
+          aria-label="Toggle Menu"
+        >
+          &#9776;
+        </button>
+      </div>
+
+      <!-- Header controls: search input and filter button -->
+      <div class="page-header__controls" id="header-controls">
+        <input
+          type="search"
+          id="search-input"
+          class="page-header__search"
+          placeholder="Search by name or email"
+        />
+        <button id="filter-btn" class="btn btn-primary">Filter</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Toolbar with sorting and items per page controls -->
+      <section class="toolbar">
+        <div class="toolbar__controls__limit">
+          <div class="toolbar__controls">
+            <label for="sort-select" class="toolbar__label">Sort By:</label>
+            <select id="sort-select" class="toolbar__select">
+              <option value="null">--Select--</option>
+              <option value="department">Department</option>
+              <option value="role">Role</option>
+            </select>
+          </div>
+
+          <div class="toolbar__limit">
+            <label for="page-limit-select" class="toolbar__label">Show:</label>
+            <select id="page-limit-select" class="toolbar__select">
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Button to open the employee add/edit form -->
+        <div class="toolbar__actions">
+          <button id="add-employee-btn" class="btn btn-add-employee">
+            Add Employee
+          </button>
+        </div>
+      </section>
+
+      <!-- Container where employee cards will be rendered -->
+      <section id="employee-list-container"></section>
+
+      <!-- Pagination controls -->
+      <div id="pagination-controls" class="pagination-controls">
+        <button id="prev-page-btn" class="btn" disabled>Previous</button>
+        <span id="current-page">1</span> / <span id="total-pages">1</span>
+        <button id="next-page-btn" class="btn" disabled>Next</button>
+      </div>
+
+      <!-- Add/Edit Employee form, initially hidden -->
+      <section id="employee-form-section" class="employee-form-section hidden">
+        <form id="employee-form" class="employee-form" novalidate>
+          <h2 class="employee-form__title">Add/Edit Employee</h2>
+
+          <div class="form-group">
+            <label for="firstName"
+              >First Name <span class="required">*</span></label
+            >
+            <input type="text" id="firstName" name="firstName" required />
+            <span class="error-message" id="error-firstName"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName"
+              >Last Name <span class="required">*</span></label
+            >
+            <input type="text" id="lastName" name="lastName" required />
+            <span class="error-message" id="error-lastName"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required />
+            <span class="error-message" id="error-email"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="department"
+              >Department <span class="required">*</span></label
+            >
+            <input type="text" id="department" name="department" required />
+            <span class="error-message" id="error-department"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="role">Role <span class="required">*</span></label>
+            <input type="text" id="role" name="role" required />
+            <span class="error-message" id="error-role"></span>
+          </div>
+
+          <!-- Form action buttons -->
+          <div class="form-buttons">
+            <button
+              type="button"
+              id="form-cancel-btn"
+              class="btn btn-secondary"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              id="save-btn"
+              class="btn btn-save btn-primary"
+            >
+              Add
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>&copy; 2025 Employee Directory. All rights reserved.</p>
+    </footer>
+
+    <!-- Confirmation modal for deleting an employee -->
+    <div id="confirm-modal" class="modal hidden">
+      <div class="modal-content">
+        <p>Are you sure you want to delete this employee?</p>
+        <button id="confirm-btn" class="btn-primary">Confirm</button>
+        <button id="cancel-btn" class="btn-danger">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Sidebar for applying filters -->
+    <div id="filter-sidebar" class="filter-sidebar hidden">
+      <form id="filter-form" class="filter-form">
+        <h3>Filter Employees</h3>
+
+        <div class="filter-group">
+          <label for="filter-firstName">First Name</label>
+          <input type="text" id="filter-firstName" name="firstName" />
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-department">Department</label>
+          <input type="text" id="filter-department" name="department" />
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-role">Role</label>
+          <input type="text" id="filter-role" name="role" />
+        </div>
+
+        <!-- Filter action buttons -->
+        <div class="filter-buttons">
+          <button type="button" id="apply-filter-btn" class="btn btn-primary">
+            Apply
+          </button>
+          <button type="button" id="reset-filter-btn" class="btn btn-secondary">
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- External JS files -->
+    <script type="module" src="src/static/js/data.js"></script>
+    <script type="module" src="src/static/js/app.js"></script>
+    <script type="module" src="src/static/js/employeeService.js"></script>
+    <script type="module" src="src/static/js/form.js"></script>
+  </body>
+</html>
